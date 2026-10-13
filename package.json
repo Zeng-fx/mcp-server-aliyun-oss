@@ -1,0 +1,49 @@
+{
+  "name": "mcp-server-aliyun-oss",
+  "version": "1.0.0",
+  "description": "MCP Server for Alibaba Cloud OSS - Assets upload, batch processing, file management, and CDN cache auto-purge",
+  "type": "module",
+  "license": "MIT",
+  "author": "fengxuanz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fengxuan-z/mcp-server-aliyun-oss.git"
+  },
+  "homepage": "https://github.com/fengxuan-z/mcp-server-aliyun-oss#readme",
+  "bin": {
+    "mcp-server-aliyun-oss": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "aliyun",
+    "aliyun-oss",
+    "oss",
+    "cdn",
+    "antigravity",
+    "cursor",
+    "claude"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.0",
+    "ali-oss": "^6.21.0",
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/ali-oss": "^6.16.11",
+    "@types/node": "^22.13.0",
+    "typescript": "^5.7.3"
+  }
+}
