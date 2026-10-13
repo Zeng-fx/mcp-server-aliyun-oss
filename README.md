@@ -97,6 +97,89 @@
 }
 ```
 
+### 4. Claude Code (CLI 终端交互)
+
+**方式 A：终端一键添加（推荐）**
+```bash
+claude mcp add aliyun-oss npx -y mcp-server-aliyun-oss \
+  -e OSS_ACCESS_KEY_ID="你的AccessKeyId" \
+  -e OSS_ACCESS_KEY_SECRET="你的AccessKeySecret" \
+  -e OSS_BUCKET="你的Bucket名称" \
+  -e OSS_REGION="oss-cn-hangzhou" \
+  -e OSS_CUSTOM_DOMAIN="https://img.yourdomain.com"
+```
+
+**方式 B：项目级配置（`.mcp.json`）**  
+在项目根目录新建 `.mcp.json`，Claude Code 启动时会自动加载：
+```json
+{
+  "mcpServers": {
+    "aliyun-oss": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-aliyun-oss"],
+      "env": {
+        "OSS_ACCESS_KEY_ID": "你的AccessKeyId",
+        "OSS_ACCESS_KEY_SECRET": "你的AccessKeySecret",
+        "OSS_BUCKET": "你的Bucket名称",
+        "OSS_REGION": "oss-cn-hangzhou",
+        "OSS_CUSTOM_DOMAIN": "https://img.yourdomain.com"
+      }
+    }
+  }
+}
+```
+
+### 5. Codex (`~/.codex/config.json` 或 `.codex/mcp.json`)
+```json
+{
+  "mcpServers": {
+    "aliyun-oss": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-aliyun-oss"],
+      "env": {
+        "OSS_ACCESS_KEY_ID": "你的AccessKeyId",
+        "OSS_ACCESS_KEY_SECRET": "你的AccessKeySecret",
+        "OSS_BUCKET": "你的Bucket名称",
+        "OSS_REGION": "oss-cn-hangzhou",
+        "OSS_CUSTOM_DOMAIN": "https://img.yourdomain.com"
+      }
+    }
+  }
+}
+```
+
+---
+
+## 💬 实际使用交互示例（Claude Code / Codex / Cursor）
+
+配置完成后，AI Agent 会自动感知并调用这 7 项工具。您可以在终端或聊天框中直接发送日常自然语言指令：
+
+### 场景 1：上传前端素材并自动替换组件中的路径
+> **User**：  
+> `帮我把本地 src/assets/hero-banner.png 上传到 OSS 的 home 目录下，并把 Banner.vue 里的本地图片路径替换为生成的 CDN 地址。`  
+>  
+> **Agent**：  
+> 1. 调用 `oss_upload_file`，上传至 `home/hero-banner.png`；  
+> 2. 获取纯净 CDN 链接：`https://img.yourdomain.com/home/hero-banner.png`；  
+> 3. 自动修改 `Banner.vue` 中的 `<img src="..." />` 并保存。
+
+### 场景 2：更新已有图片并秒级刷新 CDN 缓存
+> **User**：  
+> `设计同学给我发了新版登录背景图 new-bg.png，帮我替换线上已有的 https://img.yourdomain.com/auth/bg.png，并且刷新 CDN。`  
+>  
+> **Agent**：  
+> 1. 调用 `oss_replace_file`，安全覆盖 OSS 原图；  
+> 2. 自动检查 RAM 权限与每日免费刷新额度；  
+> 3. 触发阿里云 CDN 单文件 Purge 任务（全球节点 5~10 秒内生效，无需拼接任何 `?v=123` 时间戳）；  
+> 4. 输出替换确认与新老文件体积对比。
+
+### 场景 3：批量导入本地文件夹资源
+> **User**：  
+> `把 public/icons 目录下的所有 svg 和 png 图标批量并发上传到 OSS 的 common/icons/ 目录下，返回 URL 映射字典。`  
+>  
+> **Agent**：  
+> 调用 `oss_batch_upload`，按指定并发数上传并自动返回 `{ "home.svg": "https://...", "user.png": "https://..." }`。
+
 ---
 
 ## ⚙️ 环境变量说明
