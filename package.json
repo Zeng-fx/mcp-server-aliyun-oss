@@ -7,9 +7,9 @@
   "author": "fengxuanz",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fengxuan-z/mcp-server-aliyun-oss.git"
+    "url": "https://github.com/Zeng-fx/mcp-server-aliyun-oss.git"
   },
-  "homepage": "https://github.com/fengxuan-z/mcp-server-aliyun-oss#readme",
+  "homepage": "https://github.com/Zeng-fx/mcp-server-aliyun-oss#readme",
   "bin": {
     "mcp-server-aliyun-oss": "./dist/index.js"
   },

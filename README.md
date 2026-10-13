@@ -122,7 +122,7 @@
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/fengxuan-z/mcp-server-aliyun-oss.git
+git clone https://github.com/Zeng-fx/mcp-server-aliyun-oss.git
 cd mcp-server-aliyun-oss
 
 # 2. 安装依赖
