@@ -1,8 +1,9 @@
-<div align="right">
+# 🚀 mcp-server-aliyun-oss
+
+<div style="margin-bottom: 20px;">
   <b>Language:</b> <a href="./README.md"><b>中文</b></a> | <a href="./README_EN.md"><b>English</b></a>
 </div>
 
-# 🚀 mcp-server-aliyun-oss
 
 [![npm version](https://img.shields.io/npm/v/mcp-server-aliyun-oss.svg?style=flat-square)](https://www.npmjs.com/package/mcp-server-aliyun-oss)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
