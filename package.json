@@ -1,6 +1,6 @@
 {
   "name": "mcp-server-aliyun-oss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP Server for Alibaba Cloud OSS - Assets upload, batch processing, file management, and CDN cache auto-purge",
   "type": "module",
   "license": "MIT",
